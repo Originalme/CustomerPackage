@@ -4,6 +4,9 @@ Option Explicit
 '  Checks to see if there are updates available for any of the following components.  '
 '  Written By: Christopher S. Bates                                                   '
 '*************************************************************************************'
+'  Version 0.9.2  '
+'*****************'
+
 Const sComputer = "."
 Const sBinDir = "..\Bin\"
 Const sRootDir = ".\"
