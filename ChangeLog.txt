@@ -1,6 +1,18 @@
+---Change Log --- IM-One Installer 0.5.1
+--11 February 2013
+
+* Added WindowsCheck.vbs - Used to set variables based on Windows Version and Architecture
+
+* Added GlobalConstants.vbs - All global constants should be stored in this file
+
+* Added ErrorDialogueBox.vbs - Use the function contained when calling errors from script
+
+--------------------------------------------------------------------------------------------------------------------
+
 ---Change Log --- IM-One Installer 0.5.0 
 --11 February 2013
 
 * Innitial Release
 
 * Only has version checking for binaries at the moment.
+

@@ -1,0 +1,3 @@
+WindowsCheck Notes
+
+1. Need to get actually variables to set for each OS and Architecture

@@ -15,7 +15,11 @@ Const HKCU = &H80000001 'HKEY_CURRENT_USER
 Const HKLM = &H80000002 'HKEY_LOCAL_MACHINE
 Const HKUS = &H80000003 'HKEY_USERS
 Const HKCC = &H80000005 'HKEY_CURRENT_CONFIG
+Const sSupportNumber = "1(866) 636-9310"
+Const sSupportEmail = "im-onesupport@forwardadvantage.com"
+Const sAppName = "IM-One Global Installer"
 
+'--------------------------------------------------------------------END OF GLOBAL--------------------------------------------------------------------'
 UpdateCheck()
 
 Function UpdateCheck()

@@ -4,4 +4,6 @@ This contains a list for known issues in each peice of the software.
 
 Check-CurrentVersion.vbs
 
-* Cannot detect x64 vs. x86
+* Cannot detect x64 vs. x86 - Included now in WindowsCheck.vbs
+
+WindowsArch.vbs
