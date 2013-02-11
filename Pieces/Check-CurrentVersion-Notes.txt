@@ -1,0 +1,5 @@
+Notes: Check-CurrentVersion.vbs
+
+Still to do:
+
+1. Complete function that checks for version of Windows (May come from other peice of script)

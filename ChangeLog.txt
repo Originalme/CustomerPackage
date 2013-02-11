@@ -1,0 +1,4 @@
+IM-One Installer ChangeLog
+
+***** Vesion .5
+- Innitial Release
