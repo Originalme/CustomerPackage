@@ -484,3 +484,30 @@ Sub DelFile(sFileName)
 	End If 
 
 End Sub
+
+'----------------------------------------------'
+'                 Set DWORD Key                '
+'  Sets a DWORD Value in the Windows Registry  '
+'----------------------------------------------'
+Function SetRegDword(sKeyHive, sKeyPath, sValueName, sValue)
+	Dim oRegistry
+	Set oRegistry = GetObject("winmgmts:\\" & sComputer & "\root\default:StdRegProv")
+	
+	oRegistry.SetDWORDValue sKeyHive, sKeyPath, sValueName, sValue
+	
+
+End Function
+
+'-----------------------------------------------'
+'                Set String Key                 '
+'  Sets a String Value in the Windows Registry  '
+'-----------------------------------------------'
+Function SetRegString(sKeyHive, sKeyPath, sValueName, sValue)
+	Dim oRegistry, oKeyType
+	Set oRegistry = GetObject("winmgmts:\\" & sComputer & "\root\default:StdRegProv")
+	
+	
+	oRegistry.SetStringValue sKeyHive, sKeyPath, sValueName, sValue
+	
+
+End Function
