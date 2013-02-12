@@ -1,74 +1,102 @@
-Option Explicit
-'----------------------------------------------------------------------------------------------------------------'
-'                                        Windows Architecture                                                    '
-'  Script checks the architecture recognized by a Windows operating system and then sets variables accordingly.  '
-'  Written By: Christopher S. Bates                                                                              '
-'----------------------------------------------------------------------------------------------------------------'
-'  Version 0.5.2  '
-'-----------------'
+Dim sWindowsArchitecture, sWindowsVersion ' Windows version and architecture - set in WinArch() and WinVer()
+Dim sUserPath, sProgramFiles, sSoftwareRegistryHive ' Windows Variables based on version and architecture - set in WindowsCheck()
 
-Const sComputer = "."												'Local computer
-Const sBinDir = "..\Bin\"											'Directory where binary installers are stored
-Const sRootDir = ".\"												'Sets the root directory for the installer
-Const HKCR = &H80000000												'HKEY_CLASSES_ROOT
-Const HKCU = &H80000001												'HKEY_CURRENT_USER
-Const HKLM = &H80000002												'HKEY_LOCAL_MACHINE
-Const HKUS = &H80000003												'HKEY_USERS
-Const HKCC = &H80000005												'HKEY_CURRENT_CONFIG
-Const sSupportNumber = "1(866) 636-9310"							'IM-One Support Phone Number
-Const sSupportEmail = "im-onesupport@forwardadvantage.com"			'IM-One Support Email Address
-Const sAppName = "IM-One Global Installer"							'IM-One Support Phone Number
-Const sInstallLog = "..\InstallLog.txt"								'Location of the install log
-Const ForAppending = 8
+'-------------------------------------------------------------------------------------------------------------------------'
+'                                         !!!Primary Function - Gather Windows Information!!!                             '
+'-------------------------------------------------------------------------------------------------------------------------'
+'  Primary Function: Checks to see what version and architecure of Windows you are running and determines compatibility.  '
+'-------------------------------------------------------------------------------------------------------------------------'
+'  If Running Windows XP Check x86 or x64         '
+'        If x86 set x86  XP variables             '
+'        If x64 set x64 XP variables              '
+'  If Running Windows Vista Check for x86 or x64  '
+'        If x86 set x86 Vista variables           '
+'        If x64 set x64 Vista variables           '
+'  If Running Windows 7 Check for x86 or x64      '
+'        If x86 set x86 7 variables               '
+'        If x64 set x64 7 variables               '
+'  Else Exit Incompaitible                        '
+'-------------------------------------------------'
+Function WindowsCheck()
 
-'--------------------------------------------------------------------END OF GLOBAL--------------------------------------------------------------------'
-Dim sWindowsArchitecture, sWindowsVersion
-
-
-sWindowsArchitecture = WinArch()
-sWindowsVersion = WinVer()
-
-
-' Checks for the version of Windows and then calls function to set global variables.
-If sWindowsVersion = 2600 Then
-	SetXPVariables()
-ElseIf sWindowsVersion = 6000 _
-OR sWindowsVersion = 6002 _
-OR sWindowsVersion = 7600 _
-OR sWindowsVersion = 7601 _
-Then
-	SetWin7Variables()
-Else
-	WriteLog("Unsupported version of Windows: " & sWindowsVersion) 'Log
-	ErrorBox("You are running an unsupported version of Windows.")
-
-End If
-
-'-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------'
-'-----------------------------------------------------------------------------------------------------SUB FUNCTIONS-----------------------------------------------------------------------------------------------------'
-'-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------'
-
-'------------------------------------------------------'
-'  Function: Get Windows Version baed on Build Number  '
-'------------------------------------------------------'
-Function WinVer()
-	Dim objWMIService, oss, os, dtmConvertedDate
+	' Checks for the version of Windows and then calls function to set global variables.
+	If sWindowsVersion = 2600 Then
+		WriteLog("Found Windows XP")
+		SetXPVariables()
+		
+	ElseIf sWindowsVersion = 6000 _
+	OR sWindowsVersion = 6002 _
+	OR sWindowsVersion = 7600 _
+	OR sWindowsVersion = 7601 _
+	Then
+		
+		WriteLog("Found Windows 7 or Windows Vista")
+		SetWin7Variables()
 	
-	Set objWMIService = GetObject("winmgmts:{impersonationLevel=impersonate}!\\" & sComputer & "\root\cimv2")
-	Set oss = objWMIService.ExecQuery ("Select * from Win32_OperatingSystem")
+	Else
 	
-	WriteLog("Determining Windows Version Number") 'Log
+		WriteLog("Unsupported version of Windows: " & sWindowsVersion) 'Log
+		ErrorBox("You are running an unsupported version of Windows.")
+
+		
+	End If
 	
-	For Each os in oss
-		WinVer =  os.BuildNumber
-	Next
+	WriteLog(Chr(13) &_
+			"	User path set to... " & sUserPath & Chr(13) &_
+			"	Program files path set to... " & sProgramFiles & Chr(13) &_
+			"	Software registry hive set to ... " & sSoftwareRegistryHive & Chr(13))
+			
+End Function
+
+
+'!!!!----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------!!!!'
+'                                                                              Secondary Functions                                                                                                     '
+'!!!!----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------!!!!'
+'--------------------------------------------------'
+'  Function: Sets Variables if Windows 7 is Found  '
+'--------------------------------------------------'
+' Used in WindowsCheck()
+Function SetXPVariables()
+		sUserPath = "C:\Documents and Settings\"
+		sProgramFiles = "C:\ProgramFiles\"
+		sSoftwareRegistryHive = "SOFTWARE\"
+End Function
+
+
+'--------------------------------------------------'
+'  Function: Sets Variables if Windows 7 is Found  '
+'--------------------------------------------------''
+' Used in WindowsCheck()
+Function SetWin7Variables()
+	If  sWindowsArchitecture = "x86" Then
 	
-	WriteLog("Windows Version... " & WinVer) 'Log
+		WriteLog("Setting Variables for Windows 7x86") 'Log
+		
+		sUserPath = "C:\Users\"
+		sProgramFiles = "C:\ProgramFiles\"
+		sSoftwareRegistryHive = "SOFTWARE\"
+		
+		
+	ElseIf sWindowsArchitecture = "x64" Then
+	
+		WriteLog("Setting Variables for Windows 7x64") 'Log
+		sUserPath = "C:\Users\"
+		sProgramFiles = "C:\ProgramFiles (x86)\"
+		sSoftwareRegistryHive = "SOFTWARE\Wow6432Node\"
+		
+	Else
+		
+		WriteLog("Could not determine Operating System Architecture") 'Log
+		
+		ErrorBox("Could not determine Operating System Architecture")
+	End If
+		
 End Function
 
 '-----------------------------------------'
 '  Function: Get Windows OS Architecture  '
 '-----------------------------------------'
+' Used in WindowsCheck()
 Function WinArch()
 	Dim wshShell, osType
 	
@@ -87,118 +115,21 @@ Function WinArch()
 	
 End Function
 
-'--------------------------------------------------'
-'  Function: Sets Variables if Windows 7 is Found  '
-'--------------------------------------------------'
-Function SetWin7Variables()
-	If  sWindowsArchitecture = "x86" Then
-	
-		WriteLog("Setting Variables for Windows 7x86") 'Log
-		
-		MsgBox "Windows 7 x86"
-		
-	ElseIf sWindowsArchitecture = "x64" Then
-	
-		WriteLog("Setting Variables for Windows 7x64") 'Log
-		
-		MsgBox "Windows 7 x64"
-		
-	Else
-		
-		WriteLog("Could not determine Operating System Architecture") 'Log
-		
-		ErrorBox("Could not determine Operating System Architecture")
-	End If
-		
-End Function
-
-'---------------------------------------------------'
-'  Function: Sets Variables if Windows XP is Found  '
-'---------------------------------------------------'
-Function SetXPVariables()
-	If  sWindowsArchitecture = "x86" Then
-		
-		WriteLog("Setting Variables for WindowsXP x86") 'Log
-		
-		MsgBox "Windows XP x86"
-		
-	ElseIf sWindowsArchitecture = "x64" Then
-		
-		WriteLog("Setting Variables for WindowsXP x86") 'Log
-		
-		MsgBox "Windows XP x64"
-		
-	Else
-		WriteLog("Could not determine Operating System Architecture") 'Log
-		
-		ErrorBox("Could not determine Operating System Architecture")
-	
-	End If
-End Function
-
-
-
-'---------------------------------------------------------'
-'  Function: Displays error message with sMsg as content  '
-'---------------------------------------------------------'
-Function ErrorBox(sMsg)
-	
-	WriteLog("!ERROR: " & sMsg) 'Log
-	
-	ErrorBox = MsgBox ( _
-	"ERROR: " & vbNewLine &_
-	sMsg & vbNewLine & vbNewLine &_
-	"-------------------------------------------------------------" & vbNewLine & vbNewLine &_
-	"Please Contact Forward Advantage." & vbNewLine &_
-	"Phone: " & sSupportNumber & vbNewLine &_
-	"Email: " & sSupportEmail, _
-	vbCritical,sAppName _
-	)
-End Function
-
-
-'---------------------------'
-'         Write Log         '
-'  Writes line to logfile.  '
-'---------------------------'
-Function WriteLog(sLogLine)
-	Dim oFileSystem, oFile
-	set oFileSystem = CreateObject("Scripting.FileSystemObject")
-	set oFile = oFileSystem.OpenTextFile(sInstallLog, ForAppending, True)
-
-	oFile.WriteLine(Now & "  |  " & sLogLine)
-
-	oFile.Close
-
-End Function
-'---------------------------------------------------------NOTES BELOW PLEASE IGNORE---------------------------------------------------------'
-
-'Reminder of all the windows info commands
-Function Notes()
+'------------------------------------------------------'
+'  Function: Get Windows Version baed on Build Number  '
+'------------------------------------------------------'
+' Used in WindowsCheck()
+Function WinVer()
 	Dim objWMIService, oss, os, dtmConvertedDate
 	
 	Set objWMIService = GetObject("winmgmts:{impersonationLevel=impersonate}!\\" & sComputer & "\root\cimv2")
 	Set oss = objWMIService.ExecQuery ("Select * from Win32_OperatingSystem")
 	
+	WriteLog("Determining Windows Version Number") 'Log
+	
 	For Each os in oss
-		Wscript.Echo "Boot Device: " & os.BootDevice
-		Wscript.Echo "Build Number: " & os.BuildNumber
-		Wscript.Echo "Build Type: " & os.BuildType
-		Wscript.Echo "Caption: " & os.Caption
-		Wscript.Echo "Code Set: " & os.CodeSet
-		Wscript.Echo "Country Code: " & os.CountryCode
-		Wscript.Echo "Debug: " & os.Debug
-		Wscript.Echo "Encryption Level: " & os.EncryptionLevel
-		Wscript.Echo "Licensed Users: " & os.NumberOfLicensedUsers
-		Wscript.Echo "Organization: " & os.Organization
-		Wscript.Echo "OS Language: " & os.OSLanguage
-		Wscript.Echo "OS Product Suite: " & os.OSProductSuite
-		Wscript.Echo "OS Type: " & os.OSType
-		Wscript.Echo "Primary: " & os.Primary
-		Wscript.Echo "Registered User: " & os.RegisteredUser
-		Wscript.Echo "Serial Number: " & os.SerialNumber
-		Wscript.Echo "Version: " & os.Version
+		WinVer =  os.BuildNumber
 	Next
 	
+	WriteLog("Windows Version... " & WinVer) 'Log
 End Function
-
