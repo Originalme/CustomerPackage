@@ -3,6 +3,7 @@
 '---------------------------------------------------------'
 Function ErrorBox(sMsg)
 
+	WriteLog("!ERROR: " & sMsg)
 	ErrorBox = MsgBox ( _
 	"ERROR: " & vbNewLine &_
 	sMsg & vbNewLine & vbNewLine &_

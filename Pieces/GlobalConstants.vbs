@@ -4,7 +4,7 @@
 '                         This file contains all global constants for the IM-One Installer                        '
 '  These need to be included in all files to verify they work until a final script is built and all are combined  '
 '-----------------------------------------------------------------------------------------------------------------'
-'  Version 1.0  '
+'  Version 1.1  '
 '---------------'
 Const sComputer = "."												'Local computer
 Const sBinDir = "..\Bin\"											'Directory where binary installers are stored
@@ -17,5 +17,7 @@ Const HKCC = &H80000005												'HKEY_CURRENT_CONFIG
 Const sSupportNumber = "1(866) 636-9310"							'IM-One Support Phone Number
 Const sSupportEmail = "im-onesupport@forwardadvantage.com"			'IM-One Support Email Address
 Const sAppName = "IM-One Global Installer"							'IM-One Support Phone Number
+Const sInstallLog = "..\InstallLog.txt"								'Location of the install log
+Const ForAppending = 8												'Used for appending logs.
 
 '--------------------------------------------------------------------END OF GLOBAL--------------------------------------------------------------------'
