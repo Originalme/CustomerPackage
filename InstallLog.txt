@@ -1,29 +1,29 @@
-02/12/13 14:42:10  |  Deleted... .\InstallLog.txt
-02/12/13 14:42:10  |  Determining Windows Architecture
-02/12/13 14:42:10  |  Windows Architecture... x64
-02/12/13 14:42:10  |  Determining Windows Version Number
-02/12/13 14:42:10  |  Windows Version... 7601
-02/12/13 14:42:10  |  *******************************************************************                     IM-One Installer Log                       **  Installer Written By: Christopher S. Bates                    **  Installer Written For: Forward Advantage Inc.                 *******************************************************************!!!!-----------------------------------------Start Logging-----------------------------------------!!!!
-02/12/13 14:42:10  |  --------------------------------Checking First Run--------------------------------
-02/12/13 14:42:10  |  Registry hive already found... HKEY_LOCAL_MACHINE\SOFTWARE\IM-OneInstaller\
-02/12/13 14:42:10  |  Running as an update
-02/12/13 14:42:10  |  ----------------------------Checking Packaged Versions-----------------------------------
-02/12/13 14:42:10  |  OneSign x86 MSI version... 4.7.003.25
-02/12/13 14:42:10  |  Authentication Manager MSI version... 1.0.14
-02/12/13 14:42:10  |  View Client x86 EXE version = 8.0.2.918
-02/12/13 14:42:10  |  Citrix Receiver EXE version... 13.4.0.25
-02/12/13 14:42:10  |  IM-RDP EXE Version = 1.0.0.21
-02/12/13 14:42:10  |  ------------------------------Checking Currently Installed Versions---------------------------------------
-02/12/13 14:42:10  |  OneSign installed version... 0
-02/12/13 14:42:10  |  Citrix Man installed Version... 0
-02/12/13 14:42:10  |  VMWare installed Version... 0
-02/12/13 14:42:10  |  Auth Man installed Version... 0
-02/12/13 14:42:10  |  IMRDP installed Version... 0
-02/12/13 14:42:10  |  Update Found, proceeding with installation
-02/12/13 14:42:10  |  ------------------------------Setting Global Variabls---------------------------------------
-02/12/13 14:42:10  |  Found Windows 7 or Windows Vista
-02/12/13 14:42:10  |  Setting Variables for Windows 7x64
-02/12/13 14:42:10  |  	User path set to... C:\Users\	Program files path set to... C:\ProgramFiles (x86)\	Software registry hive set to ... SOFTWARE\Wow6432Node\
-02/12/13 14:42:10  |  ------------------------------Check and Disable UAC---------------------------------------
-02/12/13 14:42:11  |  User Action: Do not disable UAC
-02/12/13 14:42:11  |  UAC Value set to... 1
+02/12/13 18:26:22  |  Deleted... .\InstallLog.txt
+02/12/13 18:26:22  |  Determining Windows Architecture
+02/12/13 18:26:22  |  Windows Architecture... x64
+02/12/13 18:26:22  |  Determining Windows Version Number
+02/12/13 18:26:22  |  Windows Version... 7601
+02/12/13 18:26:22  |  *******************************************************************                     IM-One Installer Log                       **  Installer Written By: Christopher S. Bates                    **  Installer Written For: Forward Advantage Inc.                 *******************************************************************!!!!-----------------------------------------Start Logging-----------------------------------------!!!!
+02/12/13 18:26:22  |  --------------------------------Checking First Run--------------------------------
+02/12/13 18:26:22  |  Registry hive already found... HKEY_LOCAL_MACHINE\SOFTWARE\IM-OneInstaller\
+02/12/13 18:26:22  |  Running as an update
+02/12/13 18:26:22  |  ----------------------------Checking Packaged Versions-----------------------------------
+02/12/13 18:26:22  |  OneSign x86 MSI version... 4.7.003.25
+02/12/13 18:26:22  |  Authentication Manager MSI version... 1.0.14
+02/12/13 18:26:22  |  View Client x86 EXE version = 8.0.2.918
+02/12/13 18:26:22  |  Citrix Receiver EXE version... 13.4.0.25
+02/12/13 18:26:22  |  IM-RDP EXE Version = 1.0.0.21
+02/12/13 18:26:22  |  ------------------------------Checking Currently Installed Versions---------------------------------------
+02/12/13 18:26:22  |  OneSign installed version... 0
+02/12/13 18:26:22  |  Citrix Man installed Version... 0
+02/12/13 18:26:22  |  VMWare installed Version... 0
+02/12/13 18:26:22  |  Auth Man installed Version... 0
+02/12/13 18:26:22  |  IMRDP installed Version... 0
+02/12/13 18:26:22  |  Update Found, proceeding with installation
+02/12/13 18:26:22  |  ------------------------------Setting Global Variabls---------------------------------------
+02/12/13 18:26:22  |  Found Windows 7 or Windows Vista
+02/12/13 18:26:22  |  Setting Variables for Windows 7x64
+02/12/13 18:26:22  |  	User path set to... C:\Users\	Program files path set to... C:\ProgramFiles (x86)\	Software registry hive set to ... SOFTWARE\Wow6432Node\
+02/12/13 18:26:22  |  ------------------------------Check and Disable UAC---------------------------------------
+02/12/13 18:26:24  |  Disabling UAC
+02/12/13 18:26:24  |  UAC Value set to... 1
