@@ -43,8 +43,6 @@ WriteLog( _
 Chr(13) &_
 "******************************************************************" & Chr(13) &_
 "*                     IM-One Installer Log                       *" & Chr(13) &_ 
-"*  Installer Written By: Christopher S. Bates                    *" & Chr(13) &_
-"*  Installer Written For: Forward Advantage Inc.                 *" & Chr(13) &_
 "******************************************************************" & Chr(13) &_
 Chr(13) & Chr(13) & Chr(13) & "!!!!-----------------------------------------Start Logging-----------------------------------------!!!!" & Chr(13))
 
